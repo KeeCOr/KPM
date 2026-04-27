@@ -7,8 +7,9 @@ async function getMarkdownFiles(dir) {
     return files
       .filter(f => f.endsWith('.md'))
       .map(f => path.join(dir, f));
-  } catch {
-    return [];
+  } catch (err) {
+    if (err.code === 'ENOENT') return [];
+    throw err;
   }
 }
 
