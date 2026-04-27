@@ -73,6 +73,11 @@ describe('DELETE /api/projects/:id', () => {
     expect(res.status).toBe(204);
     expect(storage.writeProjects).toHaveBeenCalled();
   });
+
+  test('returns 404 for unknown id', async () => {
+    const res = await request(app).delete('/api/projects/999');
+    expect(res.status).toBe(404);
+  });
 });
 
 describe('POST /api/projects/:id/open', () => {
