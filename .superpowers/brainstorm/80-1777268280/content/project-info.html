@@ -1,0 +1,47 @@
+<h2>프로젝트 카드에 어떤 정보를 보여줄까요?</h2>
+<p class="subtitle">여러 개 선택 가능해요</p>
+
+<div class="options" data-multiselect>
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>현재 과업 / Todo</h3>
+      <p>Claude Code가 현재 진행 중인 작업 목록 (TodoWrite 파일 기반)</p>
+    </div>
+  </div>
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>진행률</h3>
+      <p>완료된 과업 / 전체 과업 비율 (예: 3/10 완료)</p>
+    </div>
+  </div>
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>마지막 작업 시간</h3>
+      <p>가장 최근에 Claude Code가 작업한 시간 (파일 수정 시간 기반)</p>
+    </div>
+  </div>
+  <div class="option" data-choice="d" onclick="toggleSelect(this)">
+    <div class="letter">D</div>
+    <div class="content">
+      <h3>프로젝트 상태 태그</h3>
+      <p>진행중 / 일시정지 / 완료 같은 수동 상태 표시</p>
+    </div>
+  </div>
+  <div class="option" data-choice="e" onclick="toggleSelect(this)">
+    <div class="letter">E</div>
+    <div class="content">
+      <h3>스펙/플랜 문서 링크</h3>
+      <p>docs/superpowers/specs/ 안의 설계 문서 바로가기</p>
+    </div>
+  </div>
+  <div class="option" data-choice="f" onclick="toggleSelect(this)">
+    <div class="letter">F</div>
+    <div class="content">
+      <h3>메모/노트</h3>
+      <p>프로젝트별 자유 메모 (수동 입력)</p>
+    </div>
+  </div>
+</div>

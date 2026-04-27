@@ -1,0 +1,45 @@
+<h2>구현 방법 3가지</h2>
+<p class="subtitle">하나를 선택해주세요</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>⭐ Node.js + React (추천)</h3>
+      <p><strong>백엔드:</strong> Express API 서버 — 프로젝트 폴더 감시, 파일 파싱, VSCode 실행</p>
+      <p><strong>프론트엔드:</strong> React 대시보드 — 실시간 업데이트, 반응형 UI</p>
+      <p><strong>진행률 자동화:</strong> 각 프로젝트의 <code>docs/superpowers/plans/*.md</code> 파일에서 <code>[ ]</code> / <code>[x]</code> 체크박스 파싱</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>장점</h4><ul><li>pioneer-electron 경험 활용 가능</li><li>실시간 파일 감시로 자동 업데이트</li><li>확장하기 쉬움</li></ul></div>
+        <div class="cons"><h4>단점</h4><ul><li>Node + React 두 가지 설정 필요</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>Python FastAPI + 간단한 HTML</h3>
+      <p><strong>백엔드:</strong> FastAPI — REST API, 파일 파싱, 프로세스 실행</p>
+      <p><strong>프론트엔드:</strong> 순수 HTML/CSS/JS — 프레임워크 없음</p>
+      <p><strong>진행률 자동화:</strong> 동일하게 plan 파일 체크박스 파싱</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>장점</h4><ul><li>설정 가장 단순</li><li>Python으로 파일 처리 강력</li></ul></div>
+        <div class="cons"><h4>단점</h4><ul><li>UI가 덜 동적임</li><li>Python 환경 필요</li></ul></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>Next.js 풀스택</h3>
+      <p><strong>백엔드+프론트엔드:</strong> Next.js 단일 프로젝트 — API Routes + React</p>
+      <p><strong>진행률 자동화:</strong> 동일하게 plan 파일 체크박스 파싱</p>
+      <div class="pros-cons">
+        <div class="pros"><h4>장점</h4><ul><li>하나의 프로젝트로 관리</li><li>배포 옵션 다양</li></ul></div>
+        <div class="cons"><h4>단점</h4><ul><li>Next.js 설정 복잡도 있음</li><li>로컬 전용 앱에 오버스펙일 수 있음</li></ul></div>
+      </div>
+    </div>
+  </div>
+</div>
