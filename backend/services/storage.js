@@ -7,8 +7,9 @@ async function readProjects(filePath = DEFAULT_DATA_FILE) {
   try {
     const data = await fs.readFile(filePath, 'utf-8');
     return JSON.parse(data);
-  } catch {
-    return { projects: [] };
+  } catch (err) {
+    if (err.code === 'ENOENT') return { projects: [] };
+    throw err;
   }
 }
 
