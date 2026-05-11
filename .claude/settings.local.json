@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find C:/Development/0_KPM -name *.exe -not -path */node_modules/*)"
+    ]
+  }
+}
