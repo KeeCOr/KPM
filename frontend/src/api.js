@@ -99,6 +99,13 @@ export async function getLatestDoc(id) {
   return res.json();
 }
 
+export async function createLauncher(id) {
+  const res = await fetch(`${BASE}/projects/${id}/create-launcher`, { method: 'POST' });
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(body.error || '런처 생성 실패');
+  return body;
+}
+
 export async function getSettings() {
   const res = await fetch(`${BASE}/settings`);
   if (!res.ok) throw new Error('설정 로드 실패');

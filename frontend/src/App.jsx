@@ -13,6 +13,7 @@ export default function App() {
   const [showSettings, setShowSettings] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [sortBy, setSortBy] = useState('default');
 
   async function load() {
     setLoading(true);
@@ -57,6 +58,22 @@ export default function App() {
     return pushProject(id);
   }
 
+  function getSortedProjects() {
+    const STATUS_ORDER = { active: 0, paused: 1, done: 2 };
+    const copy = [...projects];
+    if (sortBy === 'name-asc') return copy.sort((a, b) => a.name.localeCompare(b.name));
+    if (sortBy === 'name-desc') return copy.sort((a, b) => b.name.localeCompare(a.name));
+    if (sortBy === 'status') return copy.sort((a, b) => (STATUS_ORDER[a.status] ?? 9) - (STATUS_ORDER[b.status] ?? 9));
+    if (sortBy === 'recent') {
+      return copy.sort((a, b) => {
+        const ta = (a.instructions || []).map(i => i.createdAt).sort().at(-1) || '';
+        const tb = (b.instructions || []).map(i => i.createdAt).sort().at(-1) || '';
+        return tb.localeCompare(ta);
+      });
+    }
+    return copy;
+  }
+
   function handleScanDone() {
     setShowScan(false);
     load();
@@ -72,6 +89,13 @@ export default function App() {
           <button onClick={load} disabled={loading}>
             {loading ? '로딩 중...' : '새로고침'}
           </button>
+          <select value={sortBy} onChange={e => setSortBy(e.target.value)} title="정렬 기준">
+            <option value="default">기본순</option>
+            <option value="name-asc">이름 ↑</option>
+            <option value="name-desc">이름 ↓</option>
+            <option value="status">상태순</option>
+            <option value="recent">최근 지시순</option>
+          </select>
           <button onClick={() => { setError(''); setShowModal(true); }}>+ 추가</button>
         </div>
       </header>
@@ -84,7 +108,7 @@ export default function App() {
       )}
 
       <div className="grid">
-        {projects.map(p => (
+        {getSortedProjects().map(p => (
           <ProjectCard
             key={p.id}
             project={p}

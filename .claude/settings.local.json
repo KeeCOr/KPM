@@ -1,7 +1,44 @@
 {
   "permissions": {
     "allow": [
-      "Bash(find C:/Development/0_KPM -name *.exe -not -path */node_modules/*)"
+      "Bash(find C:/Development/0_KPM -name *.exe -not -path */node_modules/*)",
+      "Bash(winget install:*)",
+      "Bash(where gh:*)",
+      "Read(//c/Program Files/**)",
+      "Bash(gh --version)",
+      "Read(//c/Users/오진우/AppData/Local/Programs/**)",
+      "Read(//c/Users/오진우/AppData/**)",
+      "Bash(export PATH=\"$PATH:/c/Program Files/GitHub CLI\")",
+      "Bash(gh auth:*)",
+      "Bash(BASE=\"C:/Development\")",
+      "Bash(for dir:*)",
+      "Bash(do)",
+      "Bash(echo \"=== $dir ===\")",
+      "Bash(gh repo:*)",
+      "Bash(BASE=C:/Development for dir in 1_TOS 2_Pioneer 3_LOP 4_GM 16_PS 17_DC BS 15_MD SquadVsMonster)",
+      "Bash(do echo:*)",
+      "Bash(BASE=\"C:/Development\" echo \"=== 3_LOP/lop ===\" ls \"$BASE/3_LOP/lop/\")",
+      "Bash(/dev/null echo:*)",
+      "Bash(BASE=\"C:/Development/17_DC\")",
+      "Bash(mkdir -p \"$BASE/electron\")",
+      "Bash(mv \"$BASE/electron-main.cjs\" \"$BASE/electron/main.cjs\")",
+      "Bash(cp:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp -r \"C:/Development/0_KPM/backend/routes/projects.js\" \"C:/temp/kpm-electron/backend/routes/projects.js\")",
+      "Bash(cp -r \"C:/Development/0_KPM/frontend/dist/.\" \"C:/temp/kpm-electron/dist/\")",
+      "Bash(grep -v \"^$\\\\|^\\\\s*$\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d.get\\(''''readme'''',''''''''\\)[:800]\\)\")",
+      "Bash(gh api:*)",
+      "Bash(python -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d.get\\(''''scripts'''',{}\\), indent=2\\)\\)\" echo ---BS--- cat C:/Development/BS/config/build.spec)",
+      "Skill(update-config)",
+      "Bash(grep -iE \"\\\\.\\(md|html\\)$\")",
+      "Bash(node -e \"let d='''''''';process.stdin.on\\(''''data'''',c=>d+=c\\);process.stdin.on\\(''''end'''',\\(\\)=>{try{const p=JSON.parse\\(d\\);console.log\\(''''name:'''',p.name,''''ver:'''',p.version,''''desc:'''',p.description\\)}catch\\(e\\){}}\\)\" 2)",
+      "Bash(/dev/null ls:*)",
+      "Bash(grep -E \"\\\\.\\(md|html\\)$\")",
+      "Bash(schtasks:*)",
+      "Bash(powershell -Command \"\nschtasks /create \\\\`\n  /tn 'ClaudeAutoCommit' \\\\`\n  /tr 'powershell -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File \\\\\"C:\\\\\\\\Users\\\\\\\\오진우\\\\\\\\.claude\\\\\\\\auto-commit.ps1\\\\\"' \\\\`\n  /sc hourly \\\\`\n  /mo 1 \\\\`\n  /f\n\" 2>&1)",
+      "Bash(powershell -Command \"schtasks /query /tn 'ClaudeAutoCommit' /fo LIST\" 2>&1)",
+      "Bash(powershell -Command \"\n\\\\$testTime = \\(Get-Date\\).AddHours\\(-11\\).ToString\\('yyyy-MM-dd HH:mm:ss'\\)\nSet-Content -Path \\\\\"\\\\$env:USERPROFILE\\\\.claude\\\\last-activity.txt\\\\\" -Value \\\\$testTime -Encoding UTF8\nWrite-Host \\\\\"타임스탬프 설정: \\\\$testTime\\\\\"\n& powershell -NonInteractive -ExecutionPolicy Bypass -File 'C:\\\\Users\\\\오진우\\\\.claude\\\\auto-commit.ps1'\nWrite-Host \\('Exit code: ' + \\\\$LASTEXITCODE\\)\n\\\\$stillExists = Test-Path \\\\\"\\\\$env:USERPROFILE\\\\.claude\\\\last-activity.txt\\\\\"\nWrite-Host \\('last-activity.txt 존재: ' + \\\\$stillExists + ' \\(True = 12h 미만, 정상\\)'\\)\n\" 2>&1)"
     ]
   }
 }

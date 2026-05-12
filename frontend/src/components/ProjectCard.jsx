@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { runExe, getClaudeMessages, getPlanFile, getLatestDoc } from '../api';
+import { runExe, getClaudeMessages, getPlanFile, getLatestDoc, createLauncher } from '../api';
 import MdViewerModal from './MdViewerModal';
 
 function formatTime(isoString) {
@@ -24,6 +24,9 @@ export default function ProjectCard({ project, onUpdate, onDelete, onOpen, onPus
   const [mdViewer, setMdViewer] = useState(null);
   const [planLoading, setPlanLoading] = useState(false);
   const [docLoading, setDocLoading] = useState(false);
+  const [planMissing, setPlanMissing] = useState(false);
+  const [docMissing, setDocMissing] = useState(false);
+  const [launcherStatus, setLauncherStatus] = useState('');
 
   useEffect(() => {
     setInstructions(project.instructions || []);
@@ -98,23 +101,37 @@ export default function ProjectCard({ project, onUpdate, onDelete, onOpen, onPus
 
   async function handlePlanFile() {
     setPlanLoading(true);
+    setPlanMissing(false);
     try {
       const data = await getPlanFile(project.id);
       setMdViewer({ title: data.name, content: data.content });
-    } catch (e) {
-      alert(e.message);
+    } catch {
+      setPlanMissing(true);
     } finally {
       setPlanLoading(false);
     }
   }
 
+  async function handleCreateLauncher() {
+    setLauncherStatus('creating');
+    try {
+      await createLauncher(project.id);
+      setLauncherStatus('done');
+      setTimeout(() => setLauncherStatus(''), 3000);
+    } catch (e) {
+      setLauncherStatus('error');
+      setTimeout(() => setLauncherStatus(''), 4000);
+    }
+  }
+
   async function handleLatestDoc() {
     setDocLoading(true);
+    setDocMissing(false);
     try {
       const data = await getLatestDoc(project.id);
       setMdViewer({ title: data.name, content: data.content });
-    } catch (e) {
-      alert(e.message);
+    } catch {
+      setDocMissing(true);
     } finally {
       setDocLoading(false);
     }
@@ -230,11 +247,29 @@ export default function ProjectCard({ project, onUpdate, onDelete, onOpen, onPus
           {pushLabel}
         </button>
         <button onClick={onOpen}>열기</button>
-        <button onClick={handlePlanFile} disabled={planLoading} title="기획서 열람">
-          {planLoading ? '...' : '기획서'}
+        <button
+          onClick={handlePlanFile}
+          disabled={planLoading}
+          className={planMissing ? 'btn-missing' : ''}
+          title="기획서 열람"
+        >
+          {planLoading ? '...' : planMissing ? '기획서 없음' : '기획서'}
         </button>
-        <button onClick={handleLatestDoc} disabled={docLoading} title="최신 문서 열람">
-          {docLoading ? '...' : '문서'}
+        <button
+          onClick={handleLatestDoc}
+          disabled={docLoading}
+          className={docMissing ? 'btn-missing' : ''}
+          title="최신 문서 열람"
+        >
+          {docLoading ? '...' : docMissing ? '문서 없음' : '문서'}
+        </button>
+        <button
+          onClick={handleCreateLauncher}
+          disabled={launcherStatus === 'creating'}
+          className={launcherStatus === 'done' ? 'push-done' : launcherStatus === 'error' ? 'push-error' : ''}
+          title="프로젝트 폴더에 런처 .bat 생성"
+        >
+          {launcherStatus === 'creating' ? '...' : launcherStatus === 'done' ? '생성완료!' : launcherStatus === 'error' ? '실패' : '런처'}
         </button>
         <button onClick={onDelete} className="danger">삭제</button>
       </div>

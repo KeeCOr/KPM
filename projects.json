@@ -83,6 +83,83 @@
       "path": "c:\\Users\\오진우\\OneDrive - 스토익엔터테인먼트\\바탕 화면\\게임개발\\SquadVsMonster",
       "status": "active",
       "instructions": []
+    },
+    {
+      "id": "1778470800209",
+      "name": "0_KPM",
+      "path": "C:\\Development\\0_KPM",
+      "status": "active",
+      "instructions": []
+    },
+    {
+      "id": "1778470800210",
+      "name": "1_TOS",
+      "path": "C:\\Development\\1_TOS",
+      "status": "active",
+      "instructions": []
+    },
+    {
+      "id": "1778470800211",
+      "name": "LotteryFantasy",
+      "path": "C:\\Development\\14_LT\\LotteryFantasy",
+      "status": "active",
+      "instructions": []
+    },
+    {
+      "id": "1778470800212",
+      "name": "15_MD",
+      "path": "C:\\Development\\15_MD",
+      "status": "active",
+      "instructions": []
+    },
+    {
+      "id": "1778470800213",
+      "name": "16_PS",
+      "path": "C:\\Development\\16_PS",
+      "status": "active",
+      "instructions": []
+    },
+    {
+      "id": "1778470800214",
+      "name": "17_DC",
+      "path": "C:\\Development\\17_DC",
+      "status": "active",
+      "instructions": []
+    },
+    {
+      "id": "1778470800215",
+      "name": "2_Pioneer",
+      "path": "C:\\Development\\2_Pioneer",
+      "status": "active",
+      "instructions": []
+    },
+    {
+      "id": "1778470800216",
+      "name": "3_LOP",
+      "path": "C:\\Development\\3_LOP",
+      "status": "active",
+      "instructions": []
+    },
+    {
+      "id": "1778470800217",
+      "name": "4_GM",
+      "path": "C:\\Development\\4_GM",
+      "status": "active",
+      "instructions": []
+    },
+    {
+      "id": "1778470800218",
+      "name": "SquadVsMonster",
+      "path": "C:\\Development\\SquadVsMonster",
+      "status": "active",
+      "instructions": []
+    },
+    {
+      "id": "1778470800219",
+      "name": "오진우",
+      "path": "C:\\Users\\오진우",
+      "status": "active",
+      "instructions": []
     }
   ]
 }

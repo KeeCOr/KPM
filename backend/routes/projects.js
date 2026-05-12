@@ -186,6 +186,31 @@ router.post('/:id/run-exe', async (req, res) => {
   });
 });
 
+router.post('/:id/create-launcher', async (req, res) => {
+  const data = await readProjects();
+  const project = data.projects.find(p => p.id === req.params.id);
+  if (!project) return res.status(404).json({ error: 'not found' });
+
+  const lines = [
+    '@echo off',
+    'for /f "delims=" %%i in (\'powershell -NoProfile -Command "Get-ChildItem -Path \\"%~dp0\\" -Filter \\"*_portable.exe\\" | Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName"\') do (',
+    '    start "" "%%i"',
+    '    exit /b',
+    ')',
+    'echo 실행파일을 찾을 수 없습니다.',
+    'pause',
+  ];
+  const batContent = lines.join('\r\n') + '\r\n';
+
+  const batPath = path.join(project.path, `${project.name}.bat`);
+  try {
+    await fs.writeFile(batPath, batContent, 'utf8');
+    res.json({ ok: true, path: batPath });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 router.get('/:id/claude-messages', async (req, res) => {
   const data = await readProjects();
   const project = data.projects.find(p => p.id === req.params.id);
