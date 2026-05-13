@@ -42,7 +42,10 @@
       "Bash(powershell -Command \"schtasks /query /tn 'ClaudeAutoCommit' 2>&1\")",
       "Bash(powershell -Command \"python -c \\\\\"import json; d=json.load\\(open\\('C:/Users/오진우/.claude/settings.json', encoding='utf-8'\\)\\); print\\(json.dumps\\(d.get\\('hooks', {}\\), indent=2, ensure_ascii=False\\)\\)\\\\\"\")",
       "Bash(node:*)",
-      "Bash(powershell -Command \"schtasks /query /tn 'ClaudeAutoCommit' /fo LIST /v 2>&1\")"
+      "Bash(powershell -Command \"schtasks /query /tn 'ClaudeAutoCommit' /fo LIST /v 2>&1\")",
+      "Bash(claude plugin:*)",
+      "Bash(codex --version)",
+      "Skill(codex-image:style-gen)"
     ]
   }
 }
