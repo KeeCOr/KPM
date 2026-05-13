@@ -38,7 +38,11 @@
       "Bash(schtasks:*)",
       "Bash(powershell -Command \"\nschtasks /create \\\\`\n  /tn 'ClaudeAutoCommit' \\\\`\n  /tr 'powershell -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File \\\\\"C:\\\\\\\\Users\\\\\\\\오진우\\\\\\\\.claude\\\\\\\\auto-commit.ps1\\\\\"' \\\\`\n  /sc hourly \\\\`\n  /mo 1 \\\\`\n  /f\n\" 2>&1)",
       "Bash(powershell -Command \"schtasks /query /tn 'ClaudeAutoCommit' /fo LIST\" 2>&1)",
-      "Bash(powershell -Command \"\n\\\\$testTime = \\(Get-Date\\).AddHours\\(-11\\).ToString\\('yyyy-MM-dd HH:mm:ss'\\)\nSet-Content -Path \\\\\"\\\\$env:USERPROFILE\\\\.claude\\\\last-activity.txt\\\\\" -Value \\\\$testTime -Encoding UTF8\nWrite-Host \\\\\"타임스탬프 설정: \\\\$testTime\\\\\"\n& powershell -NonInteractive -ExecutionPolicy Bypass -File 'C:\\\\Users\\\\오진우\\\\.claude\\\\auto-commit.ps1'\nWrite-Host \\('Exit code: ' + \\\\$LASTEXITCODE\\)\n\\\\$stillExists = Test-Path \\\\\"\\\\$env:USERPROFILE\\\\.claude\\\\last-activity.txt\\\\\"\nWrite-Host \\('last-activity.txt 존재: ' + \\\\$stillExists + ' \\(True = 12h 미만, 정상\\)'\\)\n\" 2>&1)"
+      "Bash(powershell -Command \"\n\\\\$testTime = \\(Get-Date\\).AddHours\\(-11\\).ToString\\('yyyy-MM-dd HH:mm:ss'\\)\nSet-Content -Path \\\\\"\\\\$env:USERPROFILE\\\\.claude\\\\last-activity.txt\\\\\" -Value \\\\$testTime -Encoding UTF8\nWrite-Host \\\\\"타임스탬프 설정: \\\\$testTime\\\\\"\n& powershell -NonInteractive -ExecutionPolicy Bypass -File 'C:\\\\Users\\\\오진우\\\\.claude\\\\auto-commit.ps1'\nWrite-Host \\('Exit code: ' + \\\\$LASTEXITCODE\\)\n\\\\$stillExists = Test-Path \\\\\"\\\\$env:USERPROFILE\\\\.claude\\\\last-activity.txt\\\\\"\nWrite-Host \\('last-activity.txt 존재: ' + \\\\$stillExists + ' \\(True = 12h 미만, 정상\\)'\\)\n\" 2>&1)",
+      "Bash(powershell -Command \"schtasks /query /tn 'ClaudeAutoCommit' 2>&1\")",
+      "Bash(powershell -Command \"python -c \\\\\"import json; d=json.load\\(open\\('C:/Users/오진우/.claude/settings.json', encoding='utf-8'\\)\\); print\\(json.dumps\\(d.get\\('hooks', {}\\), indent=2, ensure_ascii=False\\)\\)\\\\\"\")",
+      "Bash(node:*)",
+      "Bash(powershell -Command \"schtasks /query /tn 'ClaudeAutoCommit' /fo LIST /v 2>&1\")"
     ]
   }
 }
