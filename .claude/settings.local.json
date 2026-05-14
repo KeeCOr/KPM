@@ -45,7 +45,28 @@
       "Bash(powershell -Command \"schtasks /query /tn 'ClaudeAutoCommit' /fo LIST /v 2>&1\")",
       "Bash(claude plugin:*)",
       "Bash(codex --version)",
-      "Skill(codex-image:style-gen)"
+      "Skill(codex-image:style-gen)",
+      "Bash(ls:*)",
+      "Bash(python \"C:/Users/오진우/.codex/skills/.system/imagegen/scripts/remove_chroma_key.py\" --input \"C:/Development/0_KPM/src/sprites/characters_sheet.png\" --out \"C:/Development/0_KPM/src/sprites/characters_sheet.png\" --auto-key border --soft-matte --transparent-threshold 12 --opaque-threshold 220 --despill)",
+      "Bash(python \"C:/Users/오진우/.codex/skills/.system/imagegen/scripts/remove_chroma_key.py\" --input \"C:/Development/0_KPM/src/sprites/enemies_sheet.png\" --out \"C:/Development/0_KPM/src/sprites/enemies_sheet.png\" --auto-key border --soft-matte --transparent-threshold 12 --opaque-threshold 220 --despill)",
+      "Bash(python \"C:/Users/오진우/.codex/skills/.system/imagegen/scripts/remove_chroma_key.py\" --input \"C:/Development/0_KPM/src/sprites/props_sheet.png\" --out \"C:/Development/0_KPM/src/sprites/props_sheet.png\" --auto-key border --soft-matte --transparent-threshold 12 --opaque-threshold 220 --despill)",
+      "Bash(python:*)",
+      "Bash(python3 \"C:/Users/오진우/.codex/skills/.system/imagegen/scripts/remove_chroma_key.py\" --help)",
+      "Bash(py -3 --version)",
+      "Bash(py -3 -c \"import PIL; print\\(''Pillow OK''\\)\")",
+      "Bash(py:*)",
+      "Bash(SCRIPT=\"C:/Users/오진우/.codex/skills/.system/imagegen/scripts/remove_chroma_key.py\")",
+      "Bash(SPRITES_DIR=\"C:/Development/0_KPM/src/sprites\")",
+      "Bash(for f:*)",
+      "Bash(echo \"OK: $f\")",
+      "Bash(echo \"FAIL: $f\")",
+      "Bash(DIR=\"C:/Development/0_KPM/src/sprites\")",
+      "Bash(done)",
+      "Bash(mv companions_sheet.png 01_companions.png)",
+      "Bash(mv daytime_enemies_sheet.png 02_daytime_enemies.png)",
+      "Bash(mv enemies_sheet.png 03_hunt_animals.png)",
+      "Bash(mv bosses_mecha_sheet.png 04_bosses_preview.png)",
+      "Bash(mv buildings_sheet.png 05_buildings.png)"
     ]
   }
 }
