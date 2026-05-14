@@ -68,7 +68,8 @@
       "Bash(mv bosses_mecha_sheet.png 04_bosses_preview.png)",
       "Bash(mv buildings_sheet.png 05_buildings.png)",
       "Bash(SESSION=\"019e250f-abce-76e2-a46d-d5a4f11833e7\")",
-      "Bash(cp \"C:/Users/오진우/.codex/generated_images/$SESSION/\"*.png \"C:/Development/0_KPM/src/sprites/29_animal_01_deer_anim.png\")"
+      "Bash(cp \"C:/Users/오진우/.codex/generated_images/$SESSION/\"*.png \"C:/Development/0_KPM/src/sprites/29_animal_01_deer_anim.png\")",
+      "Bash(# Copy wolf \\(019e2579\\) and process\ncp \"C:/Users/오진우/.codex/generated_images/019e2579-d016-7b90-a2b5-65bd3940fe9e/\"*.png \"C:/Development/0_KPM/src/sprites/31_animal_03_wolf_anim.png\" && py -3 \"C:/Users/오진우/.codex/skills/.system/imagegen/scripts/remove_chroma_key.py\" --input \"C:/Development/0_KPM/src/sprites/31_animal_03_wolf_anim.png\" --out \"C:/Development/0_KPM/src/sprites/31_animal_03_wolf_anim.png\" --auto-key border --soft-matte --transparent-threshold 12 --opaque-threshold 220 --despill --force)"
     ]
   }
 }
