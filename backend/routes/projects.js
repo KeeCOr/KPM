@@ -353,4 +353,38 @@ async function collectExeFiles(dirPath, results, depth) {
   } catch {}
 }
 
+router.get('/:id/gameplay-preview', async (req, res) => {
+  const data = await readProjects();
+  const project = data.projects.find(p => p.id === req.params.id);
+  if (!project) return res.status(404).json({ error: 'not found' });
+
+  const docsDir = path.join(project.path, 'docs');
+  const patterns = ['gameplay_preview.png', 'gameplay_preview.jpg', 'gameplay_preview.webp'];
+
+  try {
+    const files = await fs.readdir(docsDir).catch(() => []);
+    for (const pattern of patterns) {
+      const match = files.find(f => f.toLowerCase().endsWith(pattern.toLowerCase()));
+      if (match) {
+        const filePath = path.join(docsDir, match);
+        return res.sendFile(filePath);
+      }
+    }
+
+    // Also check root directory
+    const rootFiles = await fs.readdir(project.path).catch(() => []);
+    for (const pattern of patterns) {
+      const match = rootFiles.find(f => f.toLowerCase().includes('gameplay') && f.toLowerCase().endsWith(pattern.split('.').pop()));
+      if (match) {
+        const filePath = path.join(project.path, match);
+        return res.sendFile(filePath);
+      }
+    }
+
+    return res.status(404).json({ error: '플레이 이미지 없음' });
+  } catch (err) {
+    return res.status(404).json({ error: '플레이 이미지 없음' });
+  }
+});
+
 module.exports = router;

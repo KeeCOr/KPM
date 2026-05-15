@@ -207,6 +207,41 @@ select {
 }
 
 /* Claude History */
+.preview-section { border-top: 1px solid #f0f0f0; padding-top: 8px; }
+
+.preview-toggle {
+  background: none;
+  border: none;
+  color: #2e7d32;
+  font-size: 0.85rem;
+  cursor: pointer;
+  padding: 2px 0;
+  font-weight: 500;
+}
+
+.preview-image-wrap {
+  margin-top: 8px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  background: #fafafa;
+}
+
+.preview-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: pointer;
+}
+
+.preview-image:hover { opacity: 0.9; }
+
+.preview-missing {
+  margin-top: 6px;
+  color: #999;
+  font-size: 0.8rem;
+}
+
 .claude-section { border-top: 1px solid #f0f0f0; padding-top: 8px; }
 
 .claude-toggle {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { runExe, getClaudeMessages, getPlanFile, getLatestDoc, createLauncher } from '../api';
+import { runExe, getClaudeMessages, getPlanFile, getLatestDoc, createLauncher, getGameplayPreviewUrl } from '../api';
 import MdViewerModal from './MdViewerModal';
 
 function formatTime(isoString) {
@@ -27,6 +27,8 @@ export default function ProjectCard({ project, onUpdate, onDelete, onOpen, onPus
   const [planMissing, setPlanMissing] = useState(false);
   const [docMissing, setDocMissing] = useState(false);
   const [launcherStatus, setLauncherStatus] = useState('');
+  const [showPreview, setShowPreview] = useState(false);
+  const [previewError, setPreviewError] = useState(false);
 
   useEffect(() => {
     setInstructions(project.instructions || []);
@@ -206,6 +208,26 @@ export default function ProjectCard({ project, onUpdate, onDelete, onOpen, onPus
           </>
         ) : (
           <span className="no-progress">plan 파일 없음</span>
+        )}
+      </div>
+
+      <div className="preview-section">
+        <button className="preview-toggle" onClick={() => { setShowPreview(!showPreview); setPreviewError(false); }}>
+          플레이 화면 {showPreview ? '▲' : '▼'}
+        </button>
+        {showPreview && (
+          previewError ? (
+            <div className="preview-missing">플레이 이미지 없음</div>
+          ) : (
+            <div className="preview-image-wrap">
+              <img
+                src={getGameplayPreviewUrl(project.id)}
+                alt={`${project.name} 플레이 예시`}
+                className="preview-image"
+                onError={() => setPreviewError(true)}
+              />
+            </div>
+          )
         )}
       </div>
 

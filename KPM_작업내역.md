@@ -38,6 +38,7 @@ cd frontend && npm run dev
 - Plan 파일 진행률 바 (`docs/superpowers/plans/*.md`의 `- [x]` 체크박스 기반)
 - 버튼: ▶ 실행 / Push / 열기 / 기획서 / 문서 / 런처 / 삭제
 - 기획서/문서 파일 없으면 버튼에 "없음" 인라인 표시 (alert 없음)
+- 플레이 화면 미리보기 (접이식, 프로젝트 docs/ 내 gameplay_preview 이미지 표시)
 
 ### 2. 헤더 버튼
 
@@ -152,6 +153,7 @@ API 요청 실패 시 상단 빨간 배너로 오류 메시지 표시.
 | GET | `/api/projects/:id/claude-messages` | Claude Code 대화 기록 조회 |
 | GET | `/api/projects/:id/plan-file` | 기획서 최신 파일 조회 (`docs/superpowers/plans/`) |
 | GET | `/api/projects/:id/latest-doc` | 프로젝트 내 최신 마크다운 문서 조회 |
+| GET | `/api/projects/:id/gameplay-preview` | 플레이 예시 이미지 조회 (docs/ 또는 루트의 gameplay_preview.png/jpg/webp) |
 
 ### 설정
 
@@ -184,3 +186,4 @@ API 요청 실패 시 상단 빨간 배너로 오류 메시지 표시.
 | 2026-05-11 | 프로젝트 카드 정렬 기능 (기본/이름↑↓/상태순/최근 지시순) |
 | 2026-05-11 | 런처 .bat 생성 버튼 추가 — 프로젝트 폴더에 최신 exe 자동 실행 배치파일 생성 |
 | 2026-05-11 | KPM.bat 루트 런처 추가 — 버전 무관하게 최신 KPM exe 자동 실행 |
+| 2026-05-15 | 플레이 화면 미리보기 기능 추가 — 카드에서 gameplay_preview 이미지 접이식 표시 |

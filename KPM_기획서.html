@@ -97,6 +97,7 @@
     <li class="sub"><a href="#exe">실행파일 실행</a></li>
     <li class="sub"><a href="#launcher">런처 생성</a></li>
     <li class="sub"><a href="#docs">문서 열람</a></li>
+    <li class="sub"><a href="#preview">플레이 미리보기</a></li>
     <li class="sub"><a href="#electron">Electron 앱</a></li>
     <li class="header"><a href="#structure">파일 구조</a></li>
     <li class="header"><a href="#api">API 엔드포인트</a></li>
@@ -162,6 +163,7 @@ cd frontend && npm run dev  →  http://localhost:5173</pre>
       <li>지시사항 입력 필드 (Enter 또는 + 버튼)</li>
       <li>Plan 파일 진행률 바 (<code>docs/superpowers/plans/*.md</code>의 <code>- [x]</code> 기반)</li>
       <li>Claude 기록 토글 (최신순 30건)</li>
+      <li>플레이 화면 미리보기 (접이식, <code>docs/</code> 내 gameplay_preview 이미지 표시)</li>
       <li><strong>버튼</strong>: ▶ 실행 / Push / 열기 / 기획서 / 문서 / 런처 / 삭제</li>
     </ul>
 
@@ -200,8 +202,12 @@ cd frontend && npm run dev  →  http://localhost:5173</pre>
       <li>파일 없을 시 버튼에 <strong>"없음"</strong> 인라인 표시 (alert 팝업 없음)</li>
     </ul>
 
+    <div id="preview"></div>
+    <h3>7. 플레이 화면 미리보기</h3>
+    <p>각 카드의 <strong>"플레이 화면 ▼"</strong> 버튼 클릭 시, 해당 프로젝트의 <code>docs/</code> 폴더(또는 루트)에서 <code>gameplay_preview.png/jpg/webp</code> 파일을 찾아 이미지로 표시. 이미지 없으면 "플레이 이미지 없음" 표시.</p>
+
     <div id="electron"></div>
-    <h3>7. Electron 독립 실행 앱</h3>
+    <h3>8. Electron 독립 실행 앱</h3>
     <ul>
       <li><strong>별도 창</strong>으로 실행 (브라우저 탭 아님), 1280×900 고정 해상도</li>
       <li>Express 백엔드를 내부에서 자동 구동 후 로딩</li>
@@ -209,7 +215,7 @@ cd frontend && npm run dev  →  http://localhost:5173</pre>
       <li><code>KPM.bat</code>: 루트에서 가장 최신 <code>KPM_v*_portable.exe</code>를 자동으로 찾아 실행하는 런처</li>
     </ul>
 
-    <h3>8. 기타</h3>
+    <h3>9. 기타</h3>
     <ul>
       <li><strong>Git Push</strong>: 카드 Push 버튼 → 해당 프로젝트에서 <code>git push</code> 실행, 인라인 결과 표시</li>
       <li><strong>VSCode 열기</strong>: 열기 버튼 → <code>code {경로}</code> 실행</li>
@@ -276,6 +282,7 @@ cd frontend && npm run dev  →  http://localhost:5173</pre>
             <tr><td><span class="badge badge-get">GET</span></td><td>/api/projects/:id/claude-messages</td><td>Claude Code 대화 기록 조회</td></tr>
             <tr><td><span class="badge badge-get">GET</span></td><td>/api/projects/:id/plan-file</td><td>기획서 최신 파일 조회</td></tr>
             <tr><td><span class="badge badge-get">GET</span></td><td>/api/projects/:id/latest-doc</td><td>프로젝트 내 최신 마크다운 문서 조회</td></tr>
+            <tr><td><span class="badge badge-get">GET</span></td><td>/api/projects/:id/gameplay-preview</td><td>플레이 예시 이미지 조회</td></tr>
           </tbody>
         </table>
       </div>
@@ -311,6 +318,7 @@ cd frontend && npm run dev  →  http://localhost:5173</pre>
           <tr class="log-new"><td>2026-05-11</td><td>기획서/문서 없음 인라인 표시 (alert 제거)</td></tr>
           <tr class="log-new"><td>2026-05-11</td><td>프로젝트 카드 정렬 기능 (이름/상태/최근 지시순)</td></tr>
           <tr class="log-new"><td>2026-05-11</td><td>런처 .bat 생성 버튼 추가 + KPM.bat 루트 런처</td></tr>
+          <tr class="log-new"><td>2026-05-15</td><td>플레이 화면 미리보기 기능 — 카드에서 gameplay_preview 이미지 접이식 표시</td></tr>
         </tbody>
       </table>
     </div>

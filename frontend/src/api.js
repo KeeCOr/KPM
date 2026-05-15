@@ -106,6 +106,10 @@ export async function createLauncher(id) {
   return body;
 }
 
+export function getGameplayPreviewUrl(id) {
+  return `${BASE}/projects/${id}/gameplay-preview`;
+}
+
 export async function getSettings() {
   const res = await fetch(`${BASE}/settings`);
   if (!res.ok) throw new Error('설정 로드 실패');
