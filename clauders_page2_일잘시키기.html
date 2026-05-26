@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>이론: 일 잘 시키기</title>
+<style>
+  :root {
+    --bg: #fafafa;
+    --text: #222;
+    --accent: #4a6cf7;
+    --card-bg: #fff;
+    --border: #e5e7eb;
+    --code-bg: #f3f4f6;
+    --blockquote-bg: #f0f4ff;
+    --blockquote-border: #4a6cf7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    padding: 0;
+  }
+  .container {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+  }
+  h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin-bottom: 32px;
+    color: var(--accent);
+    border-bottom: 3px solid var(--accent);
+    padding-bottom: 16px;
+  }
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 56px;
+    margin-bottom: 20px;
+    color: #1a1a1a;
+    padding-left: 12px;
+    border-left: 4px solid var(--accent);
+  }
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-top: 32px;
+    margin-bottom: 12px;
+    color: #374151;
+  }
+  h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 24px;
+    margin-bottom: 10px;
+    color: #4b5563;
+  }
+  p {
+    margin-bottom: 16px;
+    font-size: 1.05rem;
+  }
+  .intro {
+    background: linear-gradient(135deg, #4a6cf7 0%, #6366f1 100%);
+    color: #fff;
+    padding: 28px 32px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.9;
+  }
+  blockquote {
+    background: var(--blockquote-bg);
+    border-left: 4px solid var(--blockquote-border);
+    padding: 16px 24px;
+    margin: 20px 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    font-size: 1.05rem;
+  }
+  blockquote strong {
+    color: var(--accent);
+  }
+  ul, ol {
+    margin: 12px 0 20px 24px;
+    font-size: 1.05rem;
+  }
+  ul li, ol li {
+    margin-bottom: 8px;
+  }
+  ul li::marker {
+    color: var(--accent);
+  }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 16px 0 24px;
+    overflow-x: auto;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+  code {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+  .inline-code {
+    background: var(--code-bg);
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 0.93rem;
+  }
+  .highlight-box {
+    background: #fffbeb;
+    border: 1px solid #fbbf24;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .section-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin: 24px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.98rem;
+  }
+  th {
+    background: var(--accent);
+    color: #fff;
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 600;
+  }
+  td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  tr:nth-child(even) td {
+    background: #f9fafb;
+  }
+  strong { color: #1a1a1a; }
+  .footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 0.9rem;
+    color: #9ca3af;
+  }
+  .footer a { color: var(--accent); text-decoration: none; }
+  .tip-box {
+    background: #ecfdf5;
+    border: 1px solid #34d399;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 24px 0;
+  }
+  .tip-box strong { color: #059669; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>이론: 일 잘 시키기</h1>
+
+<div class="intro">
+  내가 어떤 일을 하는지, 지금 어떤 상황인지, 결과물을 어떤 기준으로 판단하는지 매번 알려주기 귀찮다면, 프로젝트 안에 AI가 참고할 업무매뉴얼을 <span class="inline-code" style="background:rgba(255,255,255,0.2);color:#fff">.md</span> 파일로 만들어 보자.<br><br>
+  앞에서 "해줘"로 이것저것 시키며 감을 잡았다면, 여기서는 그 감을 <strong style="color:#fff">프로젝트 환경</strong>으로 옮기는 단계다.
+</div>
+
+<p>매번 프롬프트에 길게 설명하던 업무 맥락, 산출물 포맷, 판단 기준, 톤앤매너, 금지 사항을 프로젝트 안에 문서로 쌓아두자는 것이다.</p>
+
+<div class="highlight-box">
+  <strong>핵심: AI가 참고할 수 있게 프로젝트 안에 업무 맥락을 <span class="inline-code">.md</span> 파일별로 남겨라. 그래야 AI가 일을 잘한다.</strong>
+</div>
+
+<h2>1. 맥락부터 알려준다</h2>
+
+<p>프롬프트를 특별한 주문처럼 생각하지 말자. LLM은 계속 똑똑해지고 있어서 이제 대충 말해도 잘 알아듣는다. 여기서 프롬프트란 건 AI에게 내가 전달하는 메시지이고, 이걸 잘 쓰는 법은 <strong>맥락 전달</strong>을 잘 하면 되는 것이다.</p>
+
+<p>사람에게 일을 맡길 때도 그냥 "리포트 써줘"라고만 하면 결과가 애매하다. 팀장이 신입사원에게 지시하듯 원하는 걸 적어보자.</p>
+
+<ul>
+  <li>이 리포트는 [누구]에게 보여줄 건지</li>
+  <li>이 업무의 [목적]이 뭔지</li>
+  <li>지금 [어떤 상황]인지</li>
+  <li>우리 팀은 [어떤 표현]을 좋아하고 싫어하는지</li>
+  <li>지난번 [샘플]은 어디서 참조할 수 있는지</li>
+  <li>최종 결과물을 어떤 기준으로 [판단]할 건지</li>
+</ul>
+
+<div class="highlight-box">
+  <strong>AI가 부족해서 일반적인 답을 내놓는 게 아니고, 내가 하는 일의 배경을 아직 모르기 때문에 평균적인 답을 내놓는 것이다.</strong> 그러니까 프롬프트에는 내 일을 이해할 수 있는 단서가 들어가야 한다.
+</div>
+
+<h2>2. 먼저 내가 하는 일을 설명한다</h2>
+
+<p>마케팅 리포트든, 기획서든, 회의록이든, 견적서든 회사마다 자기 포맷이 있다. 자기만의 산출물 파일, 결과물, 스타일이 있다는 것이다.</p>
+
+<p>같은 회의록이라도 어떤 회사는 액션 아이템 중심으로 쓰고, 어떤 회사는 의사결정 배경을 길게 남긴다. 같은 기획서라도 어떤 팀은 한 장 요약을 좋아하고, 어떤 팀은 근거 자료를 쭉 남긴다.</p>
+
+<p><strong>그 차이가 바로 내 일의 맥락이다.</strong></p>
+
+<p>처음부터 맥락 없이 던지면 결과가 진짜 일반적인 대답만 나와서 마음에 안 든다.</p>
+
+<pre><code>이번 주 마케팅 리포트 써줘.</code></pre>
+
+<p>대신 이렇게 하자:</p>
+
+<pre><code>이번 주 마케팅 리포트 초안을 작성해줘.
+
+맥락:
+- 나는 B2B SaaS 마케팅 담당자야.
+- 이 리포트는 대표와 세일즈 팀에게 공유할 자료야.
+- 이번 주 핵심은 광고비가 아니라 데모 신청 전환율이야.
+- 우리 팀은 문제를 단정하지 않고 개선 여지를 부드럽게 쓰는 편이야.
+
+기준:
+- 첫 문단에 이번 주 한 줄 판단을 먼저 써줘.
+- 숫자는 표로 정리해줘.
+- 다음 주 액션 아이템을 3개만 제안해줘.</code></pre>
+
+<h2>3. 프로젝트는 AI가 일하는 작업실이다</h2>
+
+<p>매번 이렇게 길게 설명하는 건 너무 귀찮은 일이다. 리포트, 회의록, 문서 등을 할 때마다 맥락을 설명하면:</p>
+
+<blockquote>이럴 거면 그냥 내가 하는 게 편하겠다.</blockquote>
+
+<p>이때 필요한 게 <strong>프로젝트</strong>다.</p>
+
+<p>프로젝트는 그냥 파일을 모아둔 폴더인데, 작업실 안에 이런 것들이 정리돼 있으면 AI가 훨씬 일을 잘한다.</p>
+
+<ul>
+  <li>이 프로젝트가 무엇을 하려는 곳인지</li>
+  <li>독자나 고객이 누구인지</li>
+  <li>자주 만드는 산출물이 무엇인지</li>
+  <li>참고해야 할 기존 산출물이 어디 있는지</li>
+  <li>지켜야 할 톤앤매너가 무엇인지</li>
+  <li>건드리면 안 되는 파일이나 기준이 무엇인지</li>
+</ul>
+
+<div class="highlight-box">
+  <strong>즉 프로젝트는 AI가 잘 일할 수 있는 환경이다.</strong> 이 환경을 만들어두면 프롬프트 하나하나가 짧아져도 원하는 결과에 가까워진다.
+</div>
+
+<p>프로젝트를 만들었다면, 첫 번째로 할 일은 "AI가 읽을 안내문"을 <span class="inline-code">.md</span> 파일로 만드는 것이다.</p>
+
+<pre><code>이 프로젝트에서 앞으로 내가 어떤 일을 하려는지 설명할게.
+내 설명을 듣고 Claude가 작업 전에 참고할 수 있는 프로젝트 안내문을 만들어줘.
+
+결과는 `docs/context.md` 파일 초안으로 정리해줘.
+내용에는 프로젝트 목적, 독자/고객, 자주 만들 산출물, 작업 기준, 금지 사항을 넣어줘.
+
+먼저 필요한 질문이 있으면 5개만 물어봐.</code></pre>
+
+<p>대화로 답하다 보면 <span class="inline-code">docs/context.md</span> 같은 작은 문서 하나가 생긴다. 그게 작업실의 첫 안내문이다. 이후에는 리포트 기준은 <span class="inline-code">docs/marketing-report.md</span>, 회의록 기준은 <span class="inline-code">docs/meeting-minutes.md</span>처럼 하나씩 늘려가면 된다.</p>
+
+<h2>4. 회사 산출물이 있다면 대화로 역매뉴얼화한다</h2>
+
+<p>이 파트는 <strong>이미 예시나 회사 포맷이 있는 사람</strong>에게 특히 좋은 방법이다.</p>
+
+<p>예를 들면:</p>
+<ul>
+  <li>매주 쓰는 마케팅 리포트</li>
+  <li>영업 제안서</li>
+  <li>회의록 양식</li>
+  <li>견적서</li>
+  <li>고객 안내 메일</li>
+  <li>발표자료</li>
+  <li>회사 소개서</li>
+</ul>
+
+<p>회사에서 이미 쓰는 포맷이 있다면, 그건 그냥 파일이 아니라 <strong>우리 회사가 일하는 방식이 묻어 있는 샘플</strong>이다.</p>
+
+<p>네가 평소에 "이 정도면 우리 회사 스타일이지"라고 판단하는 결과물이 있다면, Claude에게 보여주고, 겉모양만 따라 하게 하는 게 아니라 <strong>왜 이런 구조로 만들었는지, 어떤 재료가 필요했는지, 어떤 기준으로 판단했는지</strong>를 같이 뽑아내는 것이다.</p>
+
+<div class="tip-box">
+  <strong>팁: 좋은 샘플 하나가 긴 설명보다 낫다</strong><br><br>
+  "우리 회사는 이런 톤이에요"라고 길게 설명하는 것보다, 실제로 잘 나온 문서 하나를 보여주는 게 훨씬 빠를 때가 많다.
+</div>
+
+<p>다만 그 산출물이 PPT나 PDF로만 있으면 바로 업무 기준으로 쓰기 애매하다. PDF는 요즘 AI가 꽤 잘 읽긴 한다. 문제는 못 읽는 게 아니라 <strong>토큰을 많이 먹는다는 것</strong>이다.</p>
+
+<p>그래서 먼저 전처리한다:</p>
+
+<pre><code>references/raw/sales-deck.pdf      # 원본 보관
+docs/sales-deck.md                 # AI가 읽을 텍스트 문서</code></pre>
+
+<p>Claude에 PPT나 PDF 내용을 보여주고 "이 자료를 마크다운으로 정리해줘"라고 하면 웬만하면 해준다. 표나 이미지가 많거나 보안 때문에 업로드가 어렵다면 핵심만 수작업으로 옮기면 된다.</p>
+
+<div class="highlight-box">
+  <strong>원본 파일 자체에 기대지 말고, AI가 반복해서 가볍게 읽을 수 있는 텍스트 기준을 만들어두자.</strong>
+</div>
+
+<p>한 번의 프롬프트로 "매뉴얼 만들어줘" 하고 끝내면 결과가 얕아진다. Claude도 아직 네 업무의 결을 모르는 상태라서, 겉으로 보이는 구조만 대충 정리할 수 있다.</p>
+
+<p>그러니까 대화로 뽑아내야 한다. 회사 산출물을 하나 보여주고, 질문을 하나씩 던지면서 기준과 과정을 꺼내는 것이다.</p>
+
+<h4>1라운드 — 구조만 본다</h4>
+
+<p>먼저 산출물의 구조만 보게 한다:</p>
+
+<pre><code>`docs/sales-deck.md`를 읽고,
+이 문서가 어떤 구조로 되어 있는지 먼저 정리해줘.
+
+아직 매뉴얼로 만들지는 말고,
+섹션 구성과 각 섹션의 역할만 알려줘.</code></pre>
+
+<p>여기서 AI가 구조를 잘못 잡으면 바로 고친다:</p>
+
+<pre><code>두 번째 섹션은 기능 설명이 아니라 고객 문제를 보여주는 파트야.
+그 관점으로 다시 정리해줘.</code></pre>
+
+<h4>2라운드 — 필요한 재료를 뽑는다</h4>
+
+<p>구조가 맞으면 이 산출물이 나오기 위해 필요한 재료를 묻는다:</p>
+
+<pre><code>좋아. 이번엔 이 산출물이 나오기 위해 필요한 재료를 정리해줘.
+
+보고 싶은 것:
+- 작성 전에 필요한 데이터
+- 참고해야 할 기존 자료
+- 고객이나 독자 정보
+- 숫자나 근거 자료
+- 반드시 확인해야 할 조건</code></pre>
+
+<p>답을 보고 다시 고친다:</p>
+
+<pre><code>맞아. 그런데 우리 팀 리포트는 광고비 중심이 아니라 데모 신청 전환율을 먼저 봐.
+그 기준을 반영해서 필요한 데이터 목록을 다시 정리해줘.</code></pre>
+
+<h4>3라운드 — 판단 순서와 작업 과정을 물어본다</h4>
+
+<p>그다음 이 산출물이 나오려면 어떤 순서로 판단하고 작업해야 하는지 묻는다:</p>
+
+<pre><code>이런 문서가 나오려면 어떤 순서로 일해야 할까?
+
+예를 들면:
+- 어떤 데이터를 먼저 확인하는지
+- 어떤 기준으로 내용을 고르는지
+- 어떤 내용은 빼는지
+- 누가 검토해야 하는지
+- 최종본에서 무엇을 점검하는지
+
+샘플을 보고 작업 과정을 역으로 뽑아줘.</code></pre>
+
+<div class="highlight-box">
+  <strong>이 질문이 핵심이다.</strong> 결과물만 따라 하면 겉모양만 흉내 내게 된다. 입력값과 판단 과정을 알아야 다음에도 같은 수준의 결과물이 나온다.
+</div>
+
+<h4>4라운드 — 신입사원 인수인계 문서로 바꾼다</h4>
+
+<p>구조, 필요한 재료, 판단 과정, 검토 기준이 어느 정도 나오면 그때 문서화를 시킨다:</p>
+
+<pre><code>지금까지 정리한 내용을 바탕으로
+신입사원이 같은 문서를 만들 수 있게 인수인계 문서로 정리해줘.
+
+형식:
+- 이 문서의 목적
+- 작성 전에 준비할 데이터와 자료
+- 판단 순서
+- 섹션별 작성 순서
+- 검토/승인 기준
+- 톤앤매너
+- 자주 틀리는 포인트
+- 최종 점검 체크리스트
+
+결과는 `docs/sales-message.md` 초안으로 만들어줘.</code></pre>
+
+<p>이제 나온 초안을 보고 네가 마지막으로 고쳐야 한다. 문서가 만들어지면 직접 읽어보고, 내 의도와 맞는지 체크해야 한다:</p>
+
+<ul>
+  <li>빠진 기준은 없는지</li>
+  <li>우리 회사 방식과 다른 말은 없는지</li>
+  <li>너무 일반적인 문장으로 흐려지지 않았는지</li>
+  <li>신입사원이 이 문서만 보고 따라 할 수 있는지</li>
+  <li>AI가 다음 작업에서 그대로 참고해도 되는지</li>
+</ul>
+
+<div class="highlight-box">
+  <strong>틀린 문서가 프로젝트에 들어가면 AI도 틀린 기준으로 일한다. 그래서 초안은 반드시 사람이 한 번 검수해야 한다.</strong>
+</div>
+
+<pre><code>좋아. 그런데 "최종 점검 체크리스트"가 너무 일반적이야.
+우리 팀 기준으로 다시 바꿔줘.
+- 고객 문제가 첫 화면에 보이는지
+- 숫자가 근거 없이 들어가지 않았는지
+- 다음 액션이 3개 이하인지
+이 기준을 넣어줘.</code></pre>
+
+<p>이런 식으로 대화하면서 문서화해야 한다. 한 번에 뽑는 게 아니라, 질문을 쪼개서 기준을 하나씩 꺼내는 것이다.</p>
+
+<h2>5. 반복되는 설명은 파트별 <span class="inline-code">.md</span>로 뺀다</h2>
+
+<p>일을 시키다 보면 내가 계속 반복해서 말하는 기준이 생긴다:</p>
+
+<pre><code>한국어로 써줘.
+초보자도 이해하게 쉽게 써줘.
+외부 공유 자료니까 존댓말로 써줘.
+회사명은 약칭 말고 정식 명칭으로 써줘.
+새 라이브러리는 설치하지 마.
+수정한 파일 목록을 마지막에 정리해줘.</code></pre>
+
+<p>이런 말을 한두 번 하는 건 괜찮지만, 다른 일을 시킬 때도 계속 반복된다면, 그건 더 이상 프롬프트가 아니라 <strong>문서로 빼야 하는 기준</strong>이다.</p>
+
+<pre><code>방금까지 대화하면서 내가 반복해서 말한 기준을 정리해줘.
+앞으로 Claude가 참고할 수 있게 `.md` 업무 문서 초안으로 만들어줘.
+
+포함할 것:
+- 기본 맥락
+- 판단 기준
+- 산출물 포맷
+- 톤앤매너
+- 작업 방식
+- 금지 사항
+- 자주 틀리는 포인트</code></pre>
+
+<p>이렇게 하면 대화 중에 흩어져 있던 기준이 하나의 문서로 모이기 시작한다.</p>
+
+<p>처음에는 <span class="inline-code">docs/context.md</span> 하나만 있어도 충분하지만, 한 달쯤 쓰다 보면 내용이 금방 늘어난다. 어느 정도 쌓이면 파트별 <span class="inline-code">.md</span> 문서로 쪼개는 게 좋다:</p>
+
+<pre><code>project/
+├─ CLAUDE.md
+├─ docs/
+│  ├─ context.md
+│  ├─ marketing-report.md
+│  ├─ meeting-minutes.md
+│  ├─ sales-message.md
+│  ├─ external-tone.md
+│  └─ forbidden-rules.md
+└─ references/
+   ├─ raw/
+   │  ├─ company-intro.pdf
+   │  └─ sales-deck.pptx
+   └─ processed/
+      ├─ company-intro.md
+      └─ sales-deck.md</code></pre>
+
+<p>각 파일의 역할:</p>
+
+<table>
+  <thead>
+    <tr><th>파일</th><th>역할</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><span class="inline-code">docs/context.md</span></td><td>이 프로젝트가 무엇을 하는 곳인지, 독자와 목적은 무엇인지</td></tr>
+    <tr><td><span class="inline-code">docs/marketing-report.md</span></td><td>마케팅 리포트 구조, 지표 기준, 예시 문장</td></tr>
+    <tr><td><span class="inline-code">docs/meeting-minutes.md</span></td><td>회의록 형식, 액션 아이템 정리 방식</td></tr>
+    <tr><td><span class="inline-code">docs/sales-message.md</span></td><td>회사 산출물에서 뽑은 핵심 메시지와 작성 과정</td></tr>
+    <tr><td><span class="inline-code">docs/external-tone.md</span></td><td>외부 공유 문서의 말투, 피해야 할 표현</td></tr>
+    <tr><td><span class="inline-code">docs/forbidden-rules.md</span></td><td>설치 금지, 수정 금지, 보안 관련 주의사항</td></tr>
+    <tr><td><span class="inline-code">references/raw/</span></td><td>원본 PPT/PDF 보관</td></tr>
+    <tr><td><span class="inline-code">references/processed/</span></td><td>원본을 <span class="inline-code">.md</span>로 전처리한 문서 보관</td></tr>
+  </tbody>
+</table>
+
+<p>이렇게 쪼개두면 AI가 매번 모든 기준을 통째로 읽지 않아도 된다. 오늘 리포트를 쓰는 날에는 <span class="inline-code">marketing-report.md</span>를 보면 되고, 회의록을 정리하는 날에는 <span class="inline-code">meeting-minutes.md</span>를 보면 된다.</p>
+
+<div class="highlight-box">
+  <strong>업무매뉴얼을 한 권으로 두는 게 아니라, 필요할 때 꺼내 보는 챕터들로 만드는 것이다.</strong>
+</div>
+
+<h2>6. CLAUDE.md는 업무매뉴얼의 첫 장이다</h2>
+
+<p><span class="inline-code">CLAUDE.md</span>는 프로젝트 안에서 Claude가 가장 먼저 읽는 <strong>업무매뉴얼의 첫 장</strong>이라고 생각하면 된다.</p>
+
+<p>순서로 보면, 네가 어떤 작업을 요청하기 전에 Claude는 먼저 <span class="inline-code">CLAUDE.md</span>를 읽고 이 프로젝트가 어떤 곳인지 기본 맥락을 잡는다.</p>
+
+<p>그 상태에서 네가 "리포트 써줘", "회의록 정리해줘", "문서 퇴고해줘"라고 요청하면, <span class="inline-code">CLAUDE.md</span>에 적힌 목차를 보고 필요한 세부 매뉴얼을 찾아가는 것이다.</p>
+
+<p><span class="inline-code">CLAUDE.md</span>에는 모든 내용을 다 넣는 게 아니라, <strong>이 프로젝트의 핵심 맥락과 문서 위치를 목차처럼</strong> 적어두는 것이다.</p>
+
+<p>예를 들어 이렇게 둘 수 있다:</p>
+
+<div class="section-card">
+<pre><code># 프로젝트 업무매뉴얼
+
+## 기본 맥락
+- 이 프로젝트는 비개발자를 위한 Claude Code 입문 문서를 만든다.
+- 독자는 코딩 경험이 거의 없는 실무자다.
+- 목표는 실제 업무에 써먹는 감을 잡게 하는 것이다.
+
+## 작업별 참고 문서
+- 전체 맥락과 독자 기준 → `docs/context.md`
+- 문서 톤앤매너 → `docs/external-tone.md`
+- 마케팅 리포트 작성 → `docs/marketing-report.md`
+- 회의록 정리 → `docs/meeting-minutes.md`
+- 금지 사항 → `docs/forbidden-rules.md`
+
+## 공통 작업 방식
+- 문서를 고치기 전 기존 문서의 흐름을 먼저 확인한다.
+- 새 작업을 시작하기 전 짧은 계획을 먼저 세운다.
+- 수정 후 어떤 부분을 왜 바꿨는지 요약한다.
+- 모르는 내용은 추측하지 말고 먼저 관련 파일을 읽는다.</code></pre>
+</div>
+
+<p>이렇게 해두면 Claude는 프로젝트를 열 때 먼저 "이 프로젝트는 이런 일을 하는 곳이구나"를 알고 시작한다.</p>
+
+<h2>7. 처음엔 뭘 적냐 — 5섹션 템플릿</h2>
+
+<p>처음부터 폴더를 완벽하게 나눌 필요는 없다. <span class="inline-code">CLAUDE.md</span> 한 장에 아래 5가지만 먼저 적어도 충분하다.</p>
+
+<div class="section-card">
+<h3>① 기본 맥락 — "이 프로젝트는 뭐야?"</h3>
+<pre><code>## 기본 맥락
+- 이 프로젝트는 비개발자를 위한 Claude Code 입문 문서다.
+- 독자는 코딩 경험이 거의 없는 실무자다.
+- 목표는 실제 업무에 써먹는 감을 잡게 하는 것이다.</code></pre>
+<p>AI가 가장 먼저 알아야 하는 건 내가 지금 무슨 일을 하고 있는지다.</p>
+</div>
+
+<div class="section-card">
+<h3>② 산출물 포맷 — "결과물은 어떤 모양이어야 해?"</h3>
+<pre><code>## 산출물 포맷
+- 마케팅 리포트는 `references/processed/report-template.md` 형식을 따른다.
+- 회의록은 `references/processed/meeting-template.md` 구조를 따른다.
+- 문서 초안은 핵심 요약 → 본문 → 바로 실행할 다음 단계 순서로 쓴다.</code></pre>
+<p>이미 있는 산출물과 템플릿을 가리키면 된다.</p>
+</div>
+
+<div class="section-card">
+<h3>③ 판단 기준 — "잘 나온 결과는 뭐야?"</h3>
+<pre><code>## 판단 기준
+- 첫 줄만 읽어도 결론이 보여야 한다.
+- 숫자는 판단에 필요한 것만 남긴다.
+- 다음 액션이 바로 실행 가능한 문장이어야 한다.</code></pre>
+<p>좋은 결과를 판단하는 기준도 알려줘야 Claude가 스스로 점검할 수 있다.</p>
+</div>
+
+<div class="section-card">
+<h3>④ 톤앤매너 — "어떤 말투를 써야 해?"</h3>
+<pre><code>## 톤앤매너
+- 어려운 용어는 바로 쉬운 말로 풀어쓴다.
+- 단정하지 않고 개선 가능성을 중심으로 쓴다.
+  - "실패" → "재시도 필요"
+  - "문제" → "확인할 지점"
+- 외부 공유 문서는 존댓말, 내부 메모는 반말을 허용한다.</code></pre>
+<p>톤은 추상적으로 쓰면 잘 안 먹혀. 실제 치환 예시를 적어둬야 한다.</p>
+</div>
+
+<div class="section-card">
+<h3>⑤ 작업 방식과 금지 사항 — "어떻게 일하고, 뭘 하지 말아야 해?"</h3>
+<pre><code>## 작업 방식
+- 새 작업을 시작하기 전 짧은 계획을 먼저 보여준다.
+- 수정이 끝나면 바뀐 파일과 이유를 요약한다.
+- 모르는 파일은 추측하지 말고 먼저 읽는다.
+
+## 금지 사항
+- 요청 없이 새 라이브러리를 설치하지 않는다.
+- 확인 없이 `.env`, `config.yaml` 같은 환경설정 파일을 수정하지 않는다.
+- 근거 없는 수치나 사례를 만들지 않는다.</code></pre>
+</div>
+
+<p>여기까지 적으면 충분하다. 처음부터 완벽한 업무매뉴얼을 만들려고 하지 않아도 된다.</p>
+
+<blockquote><strong>파일이 존재한다는 것 자체가 1차 완료다. 채우는 건 매주 조금씩 하면 된다.</strong></blockquote>
+
+<h2>8. 자주 빠지는 함정</h2>
+
+<table>
+  <thead>
+    <tr><th>함정</th><th>증상</th><th>해결</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><strong>프롬프트 문장만 찾음</strong></td><td>명령어만 바꾸는데 결과가 내 일과 안 맞음</td><td>내 업무 맥락을 먼저 알려준다</td></tr>
+    <tr><td><strong>프로젝트를 그냥 파일함으로 봄</strong></td><td>파일은 많은데 AI가 뭘 참고해야 할지 모름</td><td>프로젝트를 AI가 일하는 작업실로 정리한다</td></tr>
+    <tr><td><strong>회사 산출물을 안 보여줌</strong></td><td>설명은 긴데 결과물 결이 계속 어긋남</td><td>리포트, 회의록, 제안서 같은 실제 산출물을 프로젝트에 넣어둔다</td></tr>
+    <tr><td><strong>PDF 원본만 계속 읽힘</strong></td><td>컨텍스트를 많이 쓰고 답이 흐려짐</td><td>원본은 보관하고 핵심은 <span class="inline-code">.md</span>로 전처리한다</td></tr>
+    <tr><td><strong>한 번에 매뉴얼을 만들라고 함</strong></td><td>겉모양만 정리되고 실제 기준이 빠짐</td><td>구조, 입력 데이터, 판단 순서, 톤앤매너, 체크리스트를 대화로 하나씩 뽑는다</td></tr>
+    <tr><td><strong>반복 기준을 계속 직접 침</strong></td><td>"한국어로", "존댓말로", "라이브러리 X"를 매번 입력</td><td>대화 끝에 <span class="inline-code">.md</span> 업무 문서로 정리한다</td></tr>
+    <tr><td><strong>업무매뉴얼을 한 파일에 다 넣음</strong></td><td>모든 기준이 한 파일에 쌓여 찾기 어려움</td><td>파트별 <span class="inline-code">.md</span> 문서로 쪼갠다</td></tr>
+    <tr><td><strong>만들고 안 고침</strong></td><td>한 달 전 기준이 지금 업무와 안 맞음</td><td>실패 패턴이 보일 때마다 한 줄씩 업데이트한다</td></tr>
+    <tr><td><strong>금지 사항을 안 적음</strong></td><td>원치 않는 설치, 파일 수정, 과장 표현이 생김</td><td>하지 말아야 할 일을 명시한다</td></tr>
+  </tbody>
+</table>
+
+<h2>자주 헷갈리는 포인트</h2>
+
+<div class="section-card">
+<p><strong>첫 프롬프트를 길게 쓰면 무조건 좋아지나?</strong></p>
+<p>아니다. 맥락이 들어가야 한다. 짧아도 내가 하는 일, 현재 상황, 결과물 기준이 들어가면 좋아진다.</p>
+
+<p><strong>회사 산출물만 넣으면 AI가 알아서 배울까?</strong></p>
+<p>넣고 끝내지 말고, 구조부터 묻고, 필요한 데이터와 전제 자료를 묻고, 판단 순서를 묻고, 톤앤매너를 묻고, 마지막에 인수인계 문서로 정리시켜야 한다.</p>
+
+<p><strong>PDF를 읽을 수 있는데 왜 <span class="inline-code">.md</span>로 바꿔?</strong></p>
+<p>읽을 수 있어도 토큰을 많이 먹는다. 반복해서 참고할 자료라면 <span class="inline-code">.md</span>로 전처리해서 가볍게 읽히는 편이 낫다.</p>
+
+<p><strong>업무매뉴얼을 처음부터 완벽하게 써야 하나?</strong></p>
+<p>아니다. 처음엔 10줄짜리여도 된다. 쓰면서 반복되는 설명이 보일 때마다 한 줄씩 추가하면 된다.</p>
+
+<p><strong>그래도 결과가 마음에 안 들면 프롬프트가 실패한 건가?</strong></p>
+<p>아니다. 결과를 보고 "이 부분은 우리 방식과 다르다"고 알려주는 과정까지가 프롬프트다. 그 교정 내용이 다음 업무매뉴얼의 재료가 된다.</p>
+</div>
+
+<h2>오늘 바로 해볼 것</h2>
+
+<ol>
+  <li>지금 자주 시키는 업무 하나를 고른다. 예: 회의록 정리, 리포트 작성, 문서 퇴고.</li>
+  <li>그 업무의 실제 회사 산출물을 하나 찾는다.</li>
+  <li>PPT/PDF 원본은 <span class="inline-code">references/raw/</span>에 넣는다.</li>
+  <li>Claude로 원본 내용을 <span class="inline-code">.md</span>로 전처리한다. 안 되면 핵심만 수작업으로 옮긴다.</li>
+  <li>Claude에게 "이 산출물의 구조만 먼저 정리해줘"라고 시킨다.</li>
+  <li>다음 대화에서 "이 결과물이 나오려면 어떤 데이터와 전제 자료가 필요해?"라고 묻는다.</li>
+  <li>다음 대화에서 "어떤 판단 순서와 검토 과정을 거쳐야 해?"라고 묻는다.</li>
+  <li>필요하면 "톤앤매너는 어떤 식이야?"라고 따로 묻는다.</li>
+  <li>마지막에 "지금까지 내용을 신입사원 인수인계 문서처럼 <span class="inline-code">.md</span>로 정리해줘"라고 시킨다.</li>
+  <li>만들어진 문서를 직접 읽고 내 의도와 맞는지 체크한다.</li>
+  <li>초안에서 틀린 부분만 고쳐 <span class="inline-code">docs/</span> 안에 저장한다.</li>
+  <li><span class="inline-code">CLAUDE.md</span>에는 그 업무 문서를 어디서 보면 되는지 목차처럼 적어둔다.</li>
+  <li>그리고 한 번 새로운 산출물을 만들어보라고 하고, 업무 매뉴얼들을 계속해서 개선해 나간다.</li>
+</ol>
+
+<p>이렇게 하면 AI가 내 일을 이해하고 반복할 수 있는 프로젝트 환경이 생긴다. 시간이 많이 드는 작업이지만, 이 <strong>세팅이 좋아질수록 자동화할 수 있는 일</strong>도 많아진다. 결국 자동화 자체는 어려운 게 아니고, 결과물이 <strong>내 취향</strong>에 맞냐인데, 이걸 세팅으로 잡을 수 있다.</p>
+
+<div class="footer">
+  원문 출처: <a href="https://slashpage.com/clauders/4w67rj24g93q1m5yq8ep">slashpage.com/clauders</a>
+</div>
+
+</div>
+</body>
+</html>
